@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_task/core/di/dependency_injection.dart';
+import 'package:flutter_task/features/products/logic/products_cubit/prodcuts_cubit.dart';
+import 'package:flutter_task/features/products/presentation/product_screen.dart';
 
-void main() {
+void main() async {
   runApp(const FlutterTask());
+  await setUpGetIt();
 }
 
 class FlutterTask extends StatelessWidget {
@@ -9,12 +14,11 @@ class FlutterTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello, Flutter!', style: TextStyle(fontSize: 24)),
-        ),
+      home: BlocProvider(
+        create: (context) => getIt<ProdcutsCubit>()..getProducts(),
+        child: const ProductScreen(),
       ),
     );
   }
