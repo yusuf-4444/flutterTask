@@ -4,9 +4,21 @@ part 'products_model.g.dart';
 
 @JsonSerializable()
 class ProductsModel {
-  final List<Data> products;
+  final int id;
+  final String title;
+  final double price;
+  final String description;
+  final String image;
+  final List<Rating> rating;
 
-  ProductsModel({required this.products});
+  ProductsModel({
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.image,
+    required this.rating,
+  });
 
   factory ProductsModel.fromJson(Map<String, dynamic> json) =>
       _$ProductsModelFromJson(json);
@@ -14,25 +26,12 @@ class ProductsModel {
 }
 
 @JsonSerializable()
-class Data {
-  final int id;
-  final String title;
-  final double price;
-  final String description;
-  final double discountPercentage;
-  final List<String> images;
-  final double rating;
+class Rating {
+  final double rate;
+  final int count;
 
-  Data({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.description,
-    required this.images,
-    required this.discountPercentage,
-    required this.rating,
-  });
+  Rating({required this.rate, required this.count});
 
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
-  Map<String, dynamic> toJson() => _$DataToJson(this);
+  factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
+  Map<String, dynamic> toJson() => _$RatingToJson(this);
 }
