@@ -7,7 +7,7 @@ class ProductsRepo {
 
   ProductsRepo(this.apiService);
 
-  Future<ApiResult<ProductsModel>> getProducts() async {
+  Future<ApiResult<List<ProductsModel>>> getProducts() async {
     try {
       final products = await apiService.getProducts();
       return ApiResult.success(products);

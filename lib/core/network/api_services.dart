@@ -11,5 +11,5 @@ abstract class ApiServices {
   factory ApiServices(Dio dio) = _ApiServices;
 
   @GET(ApiConstants.products)
-  Future<ProductsModel> getProducts();
+  Future<List<ProductsModel>> getProducts();
 }

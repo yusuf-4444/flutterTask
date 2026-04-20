@@ -9,7 +9,7 @@ class ProductsModel {
   final double price;
   final String description;
   final String image;
-  final List<Rating> rating;
+  final Rating rating;
 
   ProductsModel({
     required this.id,

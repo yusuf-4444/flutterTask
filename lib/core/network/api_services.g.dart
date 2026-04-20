@@ -22,12 +22,12 @@ class _ApiServices implements ApiServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ProductsModel> getProducts() async {
+  Future<List<ProductsModel>> getProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProductsModel>(
+    final _options = _setStreamType<List<ProductsModel>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -37,10 +37,12 @@ class _ApiServices implements ApiServices {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProductsModel _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ProductsModel> _value;
     try {
-      _value = ProductsModel.fromJson(_result.data!);
+      _value = _result.data!
+          .map((dynamic i) => ProductsModel.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
