@@ -1,16 +1,79 @@
-# flutter_task
+# Products App — Flutter Task
 
-A new Flutter project.
+A Flutter application that displays a list of products fetched from the FakeStore API, built with clean architecture and best practices.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+|         Products Grid         |            Loading State            |
+| :---------------------------: | :---------------------------------: |
+| ![Home](screenshots/home.png) | ![Loading](screenshots/loading.png) |
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This project follows the **MVVM** pattern and is organized into three layers:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Data Layer** — Models, Repository, API Services (Retrofit + Dio)
+- **Logic Layer** — Cubit for state management with Freezed sealed states
+- **Presentation Layer** — Screens and reusable Widgets
+
+## Tech Stack
+
+| Package                  | Purpose                     |
+| ------------------------ | --------------------------- |
+| `flutter_bloc` + `cubit` | State Management            |
+| `dio` + `retrofit`       | Networking & API calls      |
+| `get_it`                 | Dependency Injection        |
+| `freezed`                | Sealed States & Union Types |
+| `json_serializable`      | JSON Parsing                |
+| `cached_network_image`   | Image Loading & Caching     |
+| `skeletonizer`           | Skeleton Loading UI         |
+| `flutter_screenutil`     | Responsive UI               |
+| `pretty_dio_logger`      | Network Request Logging     |
+
+## Project Structure
+
+```
+lib/
+├── core/
+│   ├── di/
+│   │   └── dependency_injection.dart   # GetIt setup
+│   ├── network/
+│   │   ├── api_constants.dart          # Base URL & endpoints
+│   │   ├── api_exception.dart          # Error handling
+│   │   ├── api_result.dart             # Success/Failure sealed class
+│   │   ├── api_services.dart           # Retrofit interface
+│   │   └── dio_factory.dart            # Dio singleton
+│   └── styles/
+│       ├── app_colors.dart
+│       └── app_text_styles.dart
+└── features/
+    └── products/
+        ├── data/
+        │   ├── models/
+        │   │   └── products_model.dart
+        │   └── repo/
+        │       └── products_repo.dart
+        ├── logic/
+        │   └── products_cubit/
+        │       ├── prodcuts_cubit.dart
+        │       └── prodcuts_state.dart
+        └── presentation/
+            ├── product_screen.dart
+            └── widgets/
+                ├── product_card.dart
+                └── product_screen_body.dart
+```
+
+## API
+
+```
+GET https://fakestoreapi.com/products
+```
+
+## How to Run
+
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+flutter run
+```

@@ -23,7 +23,7 @@ class ProductScreenBody extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 12.w,
                 mainAxisSpacing: 12.h,
-                childAspectRatio: 0.62,
+                childAspectRatio: 0.55,
               ),
               itemBuilder: (context, index) => const ProductCard(
                 id: 0,
