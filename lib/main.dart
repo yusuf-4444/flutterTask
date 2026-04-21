@@ -6,8 +6,9 @@ import 'package:flutter_task/features/products/logic/products_cubit/prodcuts_cub
 import 'package:flutter_task/features/products/presentation/product_screen.dart';
 
 void main() async {
-  runApp(const FlutterTask());
+  WidgetsFlutterBinding.ensureInitialized();
   await setUpGetIt();
+  runApp(const FlutterTask());
 }
 
 class FlutterTask extends StatelessWidget {
