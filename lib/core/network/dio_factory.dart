@@ -17,6 +17,11 @@ class DioFactory {
     return dio!;
   }
 
+  static addDioHeaders() {
+    dio!.options.headers['Content-Type'] = 'application/json';
+    dio!.options.headers['Accept'] = 'application/json';
+  }
+
   static addInterceptor() {
     dio!.interceptors.add(
       PrettyDioLogger(
