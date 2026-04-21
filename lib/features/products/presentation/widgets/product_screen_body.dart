@@ -41,7 +41,7 @@ class ProductScreenBody extends StatelessWidget {
               crossAxisCount: MediaQuery.of(context).size.width < 600 ? 2 : 3,
               crossAxisSpacing: 12.w,
               mainAxisSpacing: 12.h,
-              childAspectRatio: 0.57,
+              childAspectRatio: 0.55,
             ),
             itemCount: data.length,
             itemBuilder: (context, index) {

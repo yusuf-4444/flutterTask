@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_task/core/styles/app_colors.dart';
+import 'package:gap/gap.dart';
 
 class ProductCard extends StatefulWidget {
   final int id;
@@ -35,6 +37,7 @@ class _ProductCardState extends State<ProductCard> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: AppColors.borderColor),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.06),
@@ -46,7 +49,6 @@ class _ProductCardState extends State<ProductCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image + Favorite
           Stack(
             children: [
               ClipRRect(
@@ -85,13 +87,11 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ],
           ),
-
           Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Title
                 Text(
                   widget.title,
                   maxLines: 2,
@@ -101,16 +101,14 @@ class _ProductCardState extends State<ProductCard> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: 2.h),
-                // Description
+                Gap(2.h),
                 Text(
                   widget.description,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 10, color: Colors.grey[600]),
                 ),
-                SizedBox(height: 6.h),
-                // Price row
+                Gap(6.h),
                 Row(
                   children: [
                     Text(
@@ -121,7 +119,7 @@ class _ProductCardState extends State<ProductCard> {
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(width: 4.w),
+                    Gap(4.w),
                     Text(
                       'EGP $oldPrice',
                       style: TextStyle(
@@ -132,14 +130,14 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                   ],
                 ),
-                SizedBox(height: 6.h),
+                Gap(6.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Icon(Icons.star, size: 14.r, color: Colors.amber),
-                        SizedBox(width: 2.w),
+                        Gap(2.w),
                         Text(
                           widget.rating.toStringAsFixed(1),
                           style: const TextStyle(fontSize: 11),
